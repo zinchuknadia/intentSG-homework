@@ -1,5 +1,6 @@
 package com.intentsg;
 
+import com.intentsg.exception.FigureNotFoundException;
 import com.intentsg.figure.Figure;
 
 import java.util.ArrayList;
@@ -13,6 +14,10 @@ public class FigureStorage<T extends Figure> {
     }
 
     public T getById(int id) {
+        int minId = 0;
+        if (id < minId || id >= figures.size()) {
+            throw new FigureNotFoundException("Figure #" + id + " not found");
+        }
         return figures.get(id);
     }
 
