@@ -1,6 +1,6 @@
 package com.intentsg.figure;
 
-abstract class Figure implements Drawable {
+public abstract class Figure implements Drawable {
     protected final String shapeName;
     protected String color;
 
