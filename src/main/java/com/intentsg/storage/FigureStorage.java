@@ -1,7 +1,7 @@
-package com.intentsg;
+package com.intentsg.storage;
 
 import com.intentsg.exception.FigureNotFoundException;
-import com.intentsg.figure.Figure;
+import com.intentsg.model.Figure;
 
 import java.util.ArrayList;
 import java.util.List;

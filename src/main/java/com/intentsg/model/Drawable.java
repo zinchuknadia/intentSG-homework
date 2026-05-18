@@ -1,4 +1,4 @@
-package com.intentsg.figure;
+package com.intentsg.model;
 
 public interface Drawable {
     void draw();

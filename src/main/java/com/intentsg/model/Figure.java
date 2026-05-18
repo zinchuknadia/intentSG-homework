@@ -1,4 +1,4 @@
-package com.intentsg.figure;
+package com.intentsg.model;
 
 public abstract class Figure implements Drawable {
     protected final String shapeName;

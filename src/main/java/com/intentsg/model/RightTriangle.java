@@ -1,4 +1,4 @@
-package com.intentsg.figure;
+package com.intentsg.model;
 
 public class RightTriangle extends Figure {
     private double firstLeg;

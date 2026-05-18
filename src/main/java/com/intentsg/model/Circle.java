@@ -1,4 +1,4 @@
-package com.intentsg.figure;
+package com.intentsg.model;
 
 import com.intentsg.annotation.DefaultArea;
 

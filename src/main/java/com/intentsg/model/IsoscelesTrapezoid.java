@@ -1,4 +1,4 @@
-package com.intentsg.figure;
+package com.intentsg.model;
 
 public class IsoscelesTrapezoid extends Figure {
     private double firstBase;

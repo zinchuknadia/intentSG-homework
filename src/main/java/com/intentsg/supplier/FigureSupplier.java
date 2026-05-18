@@ -1,6 +1,6 @@
 package com.intentsg.supplier;
 
-import com.intentsg.figure.*;
+import com.intentsg.model.*;
 
 import java.util.Random;
 

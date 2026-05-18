@@ -1,12 +1,13 @@
 package com.intentsg;
 
 import com.intentsg.exception.FigureNotFoundException;
-import com.intentsg.figure.Figure;
-import com.intentsg.figure.Circle;
-import com.intentsg.figure.Square;
-import com.intentsg.figure.IsoscelesTrapezoid;
-import com.intentsg.figure.RightTriangle;
-import com.intentsg.figure.Rectangle;
+import com.intentsg.model.Figure;
+import com.intentsg.model.Circle;
+import com.intentsg.model.Square;
+import com.intentsg.model.IsoscelesTrapezoid;
+import com.intentsg.model.RightTriangle;
+import com.intentsg.model.Rectangle;
+import com.intentsg.storage.FigureStorage;
 import com.intentsg.supplier.FigureSupplier;
 import com.intentsg.util.AnnotationScanner;
 
