@@ -1,5 +1,7 @@
 package com.intentsg.figure;
 
+import com.intentsg.annotation.DefaultArea;
+
 public class Circle extends Figure {
     private double radius;
 
@@ -9,6 +11,7 @@ public class Circle extends Figure {
     }
 
     @Override
+    @DefaultArea
     public double getArea() {
         return Math.PI * radius * radius;
     }
