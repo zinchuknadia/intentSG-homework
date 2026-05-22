@@ -31,11 +31,12 @@ public class Main {
 
         figureCollectionService.uniqueFiguresByColor(figures);
 //        List<Figure> squares = new ArrayList<>();
-//        squares.add(new Square("w", 12));
-//        squares.add(new Square("w", 12));
+//        squares.add(new Square("white", 12));
+//        squares.add(new Square("white", 12));
 //        figureCollectionService.uniqueFiguresByColor(squares);
 
         figureCollectionService.printTopThreeLargestFigures(figures);
+        figureCollectionService.printAverageAreaByColor(figures);
     }
 
     private static void runAnnotationTask() {

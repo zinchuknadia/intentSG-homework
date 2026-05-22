@@ -66,4 +66,20 @@ public class FigureCollectionService {
         // Єдине що Collections.sort(list) вимагає додаткового імпорту java.util.Collections,
         // а list.sort() є сучаснішим підходом до використання логіки сортування колекцій
     }
+
+    public void printAverageAreaByColor(List<Figure> figures) {
+        Map<String, Double> areaSums = new HashMap<>();
+        Map<String, Integer> counts = new HashMap<>();
+
+        for (Figure figure : figures) {
+            String color = figure.getColor();
+            areaSums.merge(color, figure.getArea(), Double::sum);
+            counts.merge(color, 1, Integer::sum);
+        }
+
+        for (String color : areaSums.keySet()) {
+            double average = areaSums.get(color) / counts.get(color);
+            System.out.println(color + " : " + average);
+        }
+    }
 }
