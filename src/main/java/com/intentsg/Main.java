@@ -2,14 +2,35 @@ package com.intentsg;
 
 import com.intentsg.exception.FigureNotFoundException;
 import com.intentsg.model.Figure;
+import com.intentsg.model.IsoscelesTrapezoid;
+import com.intentsg.service.FigureCollectionService;
 import com.intentsg.storage.FigureStorage;
 import com.intentsg.supplier.FigureSupplier;
 import com.intentsg.util.AnnotationScanner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     private static final int FIGURE_STORAGE_SIZE = 10;
 
     public static void main(String[] args) {
+//        runAnnotationTask();
+        runCollectionTask();
+    }
+
+    private static void runCollectionTask() {
+        FigureSupplier figureSupplier = new FigureSupplier();
+        List<Figure> figures = new ArrayList<>();
+
+        for (int i = 0; i < 20; i++) {
+            figures.add(figureSupplier.getRandomFigure());
+        }
+        FigureCollectionService figureCollectionService = new FigureCollectionService();
+        figureCollectionService.groupByType(figures);
+    }
+
+    private static void runAnnotationTask() {
         FigureStorage<Figure> storage = fillFigureStorage();
         drawFigures(storage);
         AnnotationScanner.scanDefaultAreas();

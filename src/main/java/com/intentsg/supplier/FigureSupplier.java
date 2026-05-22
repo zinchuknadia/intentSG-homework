@@ -26,27 +26,40 @@ public class FigureSupplier {
 
         return switch (type) {
             case CIRCLE -> new Circle(color, rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE);
-            case ISOSCELES_TRAPEZOID -> new IsoscelesTrapezoid(
-                    color,
-                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE,
-                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE,
-                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE
-            );
+            case ISOSCELES_TRAPEZOID -> generateTrapezoid(color);
             case RECTANGLE -> new Rectangle(
                     color,
-                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE,
-                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE
+                    getRandomValue(),
+                    getRandomValue()
             );
             case RIGHT_TRIANGLE -> new RightTriangle(
                     color,
-                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE,
-                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE
+                    getRandomValue(),
+                    getRandomValue()
             );
             case SQUARE -> new Square(
                     color,
-                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE
+                    getRandomValue()
             );
         };
+    }
+
+    private IsoscelesTrapezoid generateTrapezoid(String color) {
+        while (true) {
+            double firstBase = getRandomValue();
+            double secondBase = getRandomValue();
+            double side = getRandomValue();
+
+            double halfDifference = Math.abs(firstBase - secondBase) / 2.0;
+
+            if (side > halfDifference) {
+                return new IsoscelesTrapezoid(color, firstBase, secondBase, side);
+            }
+        }
+    }
+
+    private int getRandomValue() {
+        return rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE;
     }
 
     public Figure getDefaultFigure() {
