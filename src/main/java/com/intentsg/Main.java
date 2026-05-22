@@ -2,7 +2,6 @@ package com.intentsg;
 
 import com.intentsg.exception.FigureNotFoundException;
 import com.intentsg.model.Figure;
-import com.intentsg.model.IsoscelesTrapezoid;
 import com.intentsg.service.FigureCollectionService;
 import com.intentsg.storage.FigureStorage;
 import com.intentsg.supplier.FigureSupplier;
@@ -27,7 +26,14 @@ public class Main {
             figures.add(figureSupplier.getRandomFigure());
         }
         FigureCollectionService figureCollectionService = new FigureCollectionService();
+
         figureCollectionService.groupByType(figures);
+
+        figureCollectionService.uniqueFiguresByColor(figures);
+//        List<Figure> squares = new ArrayList<>();
+//        squares.add(new Square("w", 12));
+//        squares.add(new Square("w", 12));
+//        figureCollectionService.uniqueFiguresByColor(squares);
     }
 
     private static void runAnnotationTask() {
