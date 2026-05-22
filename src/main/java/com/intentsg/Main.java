@@ -26,16 +26,16 @@ public class Main {
         FigureStorage<Figure> storage = new FigureStorage<>();
 
         for (int i = 0; i < listSize / 2; i++) {
-            storage.addFigure(figureSupplier.getRandomFigure());
+            storage.add(figureSupplier.getRandomFigure());
         }
         for (int i = listSize / 2; i < listSize; i++) {
-            storage.addFigure(figureSupplier.getDefaultFigure());
+            storage.add(figureSupplier.getDefaultFigure());
         }
 
-        int idOverflow = 3;
-        for (int i = 0; i < listSize + idOverflow; i++) {
+        int[] idsToTry = {0, 5, 9, 10, 42, 99};
+        for (int id : idsToTry) {
             try {
-                storage.getById(i).draw();
+                storage.getById(id).draw();
             } catch (FigureNotFoundException e) {
                 System.out.println(e.getMessage());
             }
