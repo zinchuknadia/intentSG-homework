@@ -37,6 +37,7 @@ public class Main {
 
         figureCollectionService.printTopThreeLargestFigures(figures);
         figureCollectionService.printAverageAreaByColor(figures);
+        figureCollectionService.demonstrateUnmodifiableMapBehavior();
     }
 
     private static void runAnnotationTask() {

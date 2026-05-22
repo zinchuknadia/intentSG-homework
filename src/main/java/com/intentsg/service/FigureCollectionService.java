@@ -3,18 +3,20 @@ package com.intentsg.service;
 import com.intentsg.model.Figure;
 
 import java.util.Map;
-import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Set;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Comparator;
+import java.util.Collections;
 
 public class FigureCollectionService {
     private static final int TOP_FIGURES_COUNT = 3;
+    private static final String NEW_FIGURE_NAME = "Hexagon";
+    private final Map<String, List<Figure>> groupedFigures = new HashMap<>();
 
     public void groupByType(List<Figure> figures) {
-        Map<String, List<Figure>> groupedFigures = new HashMap<>();
         for (Figure figure : figures) {
             String figureName = figure.getClass().getSimpleName();
             groupedFigures.computeIfAbsent(figureName, k -> new ArrayList<>()).add(figure);
@@ -81,5 +83,21 @@ public class FigureCollectionService {
             double average = areaSums.get(color) / counts.get(color);
             System.out.println(color + " : " + average);
         }
+    }
+
+    public void demonstrateUnmodifiableMapBehavior() {
+        Map<String, List<Figure>> wrapper = Collections.unmodifiableMap(groupedFigures);
+        try {
+            //Падає виняток UnsupportedOperationException, бо ми намагаємося змінити незмінюваний об'єкт
+            wrapper.put(NEW_FIGURE_NAME, new ArrayList<>());
+        } catch (UnsupportedOperationException e) {
+            System.out.println("Cannot modify unmodifiable map");
+        }
+
+        System.out.println("Original size: " + groupedFigures.size());
+        groupedFigures.put(NEW_FIGURE_NAME, new ArrayList<>());
+        System.out.println("After modifying original");
+        System.out.println("Original size: " + groupedFigures.size());
+        System.out.println("Wrapper size: " + Collections.unmodifiableMap(groupedFigures).size());
     }
 }
