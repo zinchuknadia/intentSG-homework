@@ -34,6 +34,8 @@ public class Main {
 //        squares.add(new Square("w", 12));
 //        squares.add(new Square("w", 12));
 //        figureCollectionService.uniqueFiguresByColor(squares);
+
+        figureCollectionService.printTopThreeLargestFigures(figures);
     }
 
     private static void runAnnotationTask() {

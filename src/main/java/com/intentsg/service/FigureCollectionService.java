@@ -8,8 +8,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Comparator;
 
 public class FigureCollectionService {
+    private static final int TOP_FIGURES_COUNT = 3;
+
     public void groupByType(List<Figure> figures) {
         Map<String, List<Figure>> groupedFigures = new HashMap<>();
         for (Figure figure : figures) {
@@ -43,5 +46,24 @@ public class FigureCollectionService {
             Set<Figure> figureSet = entry.getValue();
             System.out.println(figureSet.size());
         }
+    }
+
+    public void printTopThreeLargestFigures(List<Figure> figures) {
+        List<Figure> sortedFigures = new ArrayList<>(figures);
+        sortedFigures.sort(Comparator.comparing(Figure::getArea).reversed());
+
+        int limit = Math.min(TOP_FIGURES_COUNT, sortedFigures.size());
+
+        for (int i = 0; i < limit; i++) {
+            Figure figure = sortedFigures.get(i);
+            System.out.println(
+                    figure.getClass().getSimpleName() +
+                            " [" + figure.getColor() + "] " +
+                            "area=" + figure.getArea()
+            );
+        }
+        // У цьому випадку немає значення чи використовувати list.sort() чи Collections.sort(list).
+        // Єдине що Collections.sort(list) вимагає додаткового імпорту java.util.Collections,
+        // а list.sort() є сучаснішим підходом до використання логіки сортування колекцій
     }
 }
