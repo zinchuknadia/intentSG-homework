@@ -1,48 +1,55 @@
 package com.intentsg.supplier;
 
-import com.intentsg.model.*;
+import com.intentsg.model.Figure;
+import com.intentsg.model.FigureType;
+import com.intentsg.model.Circle;
+import com.intentsg.model.IsoscelesTrapezoid;
+import com.intentsg.model.Square;
+import com.intentsg.model.RightTriangle;
+import com.intentsg.model.Rectangle;
 
 import java.util.Random;
 
 public class FigureSupplier {
+    private static final int MIN_RANDOM_VALUE = 1;
+    private static final int MAX_RANDOM_VALUE = 20;
+    private static final int DEFAULT_CIRCLE_RADIUS = 10;
+    private static final String DEFAULT_FIGURE_COLOR = "white";
+
     private final ColorSupplier colorSupplier = new ColorSupplier();
     private final Random rand = new Random();
 
     public Figure getRandomFigure() {
-        int figuresNumber = 5;
-        int type = rand.nextInt(figuresNumber);
+        FigureType[] types = FigureType.values();
+        FigureType type = types[rand.nextInt(types.length)];
         String color = colorSupplier.getRandomColor();
 
-        int minValue = 1;
-        int maxValue = 20;
         return switch (type) {
-            case 0 -> new Circle(color, rand.nextInt(maxValue) + minValue);
-            case 1 -> new IsoscelesTrapezoid(
+            case CIRCLE -> new Circle(color, rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE);
+            case ISOSCELES_TRAPEZOID -> new IsoscelesTrapezoid(
                     color,
-                    rand.nextInt(maxValue) + minValue,
-                    rand.nextInt(maxValue) + minValue,
-                    rand.nextInt(maxValue) + minValue
+                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE,
+                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE,
+                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE
             );
-            case 2 -> new Rectangle(
+            case RECTANGLE -> new Rectangle(
                     color,
-                    rand.nextInt(maxValue) + minValue,
-                    rand.nextInt(maxValue) + minValue
+                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE,
+                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE
             );
-            case 3 -> new RightTriangle(
+            case RIGHT_TRIANGLE -> new RightTriangle(
                     color,
-                    rand.nextInt(maxValue) + minValue,
-                    rand.nextInt(maxValue) + minValue
+                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE,
+                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE
             );
-            case 4 -> new Square(
+            case SQUARE -> new Square(
                     color,
-                    rand.nextInt(maxValue) + minValue
+                    rand.nextInt(MAX_RANDOM_VALUE) + MIN_RANDOM_VALUE
             );
-            default -> null;
         };
     }
 
     public Figure getDefaultFigure() {
-        int radius = 10;
-        return new Circle("white", radius);
+        return new Circle(DEFAULT_FIGURE_COLOR, DEFAULT_CIRCLE_RADIUS);
     }
 }

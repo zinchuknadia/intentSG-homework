@@ -1,12 +1,12 @@
 package com.intentsg.model;
 
 public class IsoscelesTrapezoid extends Figure {
-    private double firstBase;
-    private double secondBase;
-    private double side;
+    private final double firstBase;
+    private final double secondBase;
+    private final double side;
 
     public IsoscelesTrapezoid(String color, double firstBase, double secondBase, double side) {
-        super(color, "isosceles trapezoid");
+        super(color, FigureType.ISOSCELES_TRAPEZOID);
         this.firstBase = firstBase;
         this.secondBase = secondBase;
         this.side = side;
@@ -14,17 +14,14 @@ public class IsoscelesTrapezoid extends Figure {
 
     @Override
     public double getArea() {
-        double h = Math.sqrt(Math.pow(side, 2) - Math.pow((firstBase - secondBase) / 2, 2));
+        double h = Math.sqrt((side * side) - Math.pow((firstBase - secondBase) / 2, 2));
         return ((firstBase + secondBase) / 2) * h;
     }
 
     @Override
-    public void draw() {
-        System.out.println("Figure: " + shapeName +
-                ", area: " + getArea() +
-                " sq. units, firstBase: " + firstBase +
+    protected String getFigureParameters() {
+        return ", firstBase: " + firstBase +
                 " units, secondBase: " + secondBase +
-                " units, side: " + side +
-                " units, color: " + color);
+                " units, side: " + side + " units";
     }
 }

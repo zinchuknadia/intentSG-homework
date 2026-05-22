@@ -1,23 +1,20 @@
 package com.intentsg.model;
 
-public class Square extends Figure{
-    private double a;
+public class Square extends Figure {
+    private final double side;
 
-    public Square(String color, double a) {
-        super(color, "square");
-        this.a = a;
+    public Square(String color, double side) {
+        super(color, FigureType.SQUARE);
+        this.side = side;
     }
 
     @Override
     public double getArea() {
-        return a * a;
+        return side * side;
     }
 
     @Override
-    public void draw() {
-        System.out.println("Figure: " + shapeName +
-                ", area: " + getArea() +
-                " sq. units, a: " + a +
-                " units, color: " + color);
+    protected String getFigureParameters() {
+        return ", side: " + side + " units";
     }
 }

@@ -2,36 +2,41 @@ package com.intentsg;
 
 import com.intentsg.exception.FigureNotFoundException;
 import com.intentsg.model.Figure;
-import com.intentsg.model.Circle;
-import com.intentsg.model.Square;
-import com.intentsg.model.IsoscelesTrapezoid;
-import com.intentsg.model.RightTriangle;
-import com.intentsg.model.Rectangle;
 import com.intentsg.storage.FigureStorage;
 import com.intentsg.supplier.FigureSupplier;
 import com.intentsg.util.AnnotationScanner;
 
 public class Main {
-    private final static Class<?>[] figureClasses = {
-            Circle.class,
-            IsoscelesTrapezoid.class,
-            Rectangle.class,
-            RightTriangle.class,
-            Square.class
-    };
+    private static final int FIGURE_STORAGE_SIZE = 10;
 
     public static void main(String[] args) {
-        int listSize = 10;
-        FigureSupplier figureSupplier = new FigureSupplier();
+        FigureStorage<Figure> storage = fillFigureStorage();
+        drawFigures(storage);
+        AnnotationScanner.scanDefaultAreas();
+    }
+
+    private static FigureStorage<Figure> fillFigureStorage() {
         FigureStorage<Figure> storage = new FigureStorage<>();
+        FigureSupplier figureSupplier = new FigureSupplier();
 
-        for (int i = 0; i < listSize / 2; i++) {
-            storage.add(figureSupplier.getRandomFigure());
-        }
-        for (int i = listSize / 2; i < listSize; i++) {
-            storage.add(figureSupplier.getDefaultFigure());
-        }
+        fillRandomFigures(storage, figureSupplier);
+        fillDefaultFigures(storage, figureSupplier);
+        return storage;
+    }
 
+    private static void fillRandomFigures(FigureStorage<Figure> storage, FigureSupplier supplier) {
+        for (int i = 0; i < FIGURE_STORAGE_SIZE / 2; i++) {
+            storage.add(supplier.getRandomFigure());
+        }
+    }
+
+    private static void fillDefaultFigures(FigureStorage<Figure> storage, FigureSupplier supplier) {
+        for (int i = FIGURE_STORAGE_SIZE / 2; i < FIGURE_STORAGE_SIZE; i++) {
+            storage.add(supplier.getDefaultFigure());
+        }
+    }
+
+    private static void drawFigures(FigureStorage<Figure> storage) {
         int[] idsToTry = {0, 5, 9, 10, 42, 99};
         for (int id : idsToTry) {
             try {
@@ -40,7 +45,5 @@ public class Main {
                 System.out.println(e.getMessage());
             }
         }
-
-        AnnotationScanner.scanDefaultAreas(figureClasses);
     }
 }

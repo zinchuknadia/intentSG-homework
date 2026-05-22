@@ -1,11 +1,11 @@
 package com.intentsg.model;
 
 public class RightTriangle extends Figure {
-    private double firstLeg;
-    private double secondLeg;
+    private final double firstLeg;
+    private final double secondLeg;
 
     public RightTriangle(String color, double firstLeg, double secondLeg) {
-        super(color, "right triangle");
+        super(color, FigureType.RIGHT_TRIANGLE);
         this.firstLeg = firstLeg;
         this.secondLeg = secondLeg;
     }
@@ -16,11 +16,8 @@ public class RightTriangle extends Figure {
     }
 
     @Override
-    public void draw() {
-        System.out.println("Figure: " + shapeName +
-                ", area: " + getArea() +
-                " sq. units, firstLeg: " + firstLeg +
-                " units, secondLeg: " + secondLeg +
-                " units, color: " + color);
+    protected String getFigureParameters() {
+        return ", firstLeg: " + firstLeg +
+                " units, secondLeg: " + secondLeg + " units";
     }
 }

@@ -3,10 +3,10 @@ package com.intentsg.model;
 import com.intentsg.annotation.DefaultArea;
 
 public class Circle extends Figure {
-    private double radius;
+    private final double radius;
 
     public Circle(String color, double radius) {
-        super(color, "circle");
+        super(color, FigureType.CIRCLE);
         this.radius = radius;
     }
 
@@ -17,10 +17,7 @@ public class Circle extends Figure {
     }
 
     @Override
-    public void draw() {
-        System.out.println("Figure: " + shapeName +
-                ", area: " + getArea() +
-                " sq. units, radius: " + radius +
-                " units, color: " + color);
+    protected String getFigureParameters() {
+        return ", radius: " + radius + " units";
     }
 }

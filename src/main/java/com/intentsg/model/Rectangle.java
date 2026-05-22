@@ -1,26 +1,23 @@
 package com.intentsg.model;
 
 public class Rectangle extends Figure {
-    private double a;
-    private double b;
+    private final double width;
+    private final double height;
 
-    public Rectangle(String color, double a, double b) {
-        super(color, "rectangle");
-        this.a = a;
-        this.b = b;
+    public Rectangle(String color, double width, double height) {
+        super(color, FigureType.RECTANGLE);
+        this.width = width;
+        this.height = height;
     }
 
     @Override
     public double getArea() {
-        return a * b;
+        return width * height;
     }
 
     @Override
-    public void draw() {
-        System.out.println("Figure: " + shapeName +
-                ", area: " + getArea() +
-                " sq. units, a: " + a +
-                " units, b: " + b +
-                "units, color: " + color);
+    protected String getFigureParameters() {
+        return ", width: " + width +
+                " units, height: " + height + " units";
     }
 }
