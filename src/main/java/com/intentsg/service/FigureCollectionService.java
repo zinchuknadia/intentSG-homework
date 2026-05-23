@@ -14,6 +14,7 @@ import java.util.Collections;
 public class FigureCollectionService {
     private static final int TOP_FIGURES_COUNT = 3;
     private static final String NEW_FIGURE_NAME = "Hexagon";
+
     private final Map<String, List<Figure>> groupedFigures = new HashMap<>();
 
     public void groupByType(List<Figure> figures) {
