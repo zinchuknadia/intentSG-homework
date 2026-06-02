@@ -1,39 +1,31 @@
 package com.intentsg.solidFix;
 
+import com.intentsg.solidFix.service.DataValidator;
+import com.intentsg.solidFix.service.EmailSender;
+import com.intentsg.solidFix.service.FileSaver;
+import com.intentsg.solidFix.service.reportGenerator.ReportGenerator;
+
 import java.util.List;
 
-public class ReportManager {
-    private String reportType;
+class ReportManager {
+    private final ReportGenerator generator;
+    private final DataValidator validator;
+    private final FileSaver fileSaver;
+    private final EmailSender emailSender;
 
-    public ReportManager(String reportType) {
-        this.reportType = reportType;
+    private static final String FILE = "report.txt";
+
+    public ReportManager(ReportGenerator generator, DataValidator validator, FileSaver fileSaver, EmailSender emailSender) {
+        this.generator = generator;
+        this.validator = validator;
+        this.fileSaver = fileSaver;
+        this.emailSender = emailSender;
     }
 
-    public void generateReport(List<String> data) {
-        if (reportType.equals("PDF")) {
-            System.out.println("Generating PDF...");
-            for (String line : data) {
-                System.out.println("[PDF] " + line);
-            }
-        } else if (reportType.equals("CSV")) {
-            System.out.println("Generating CSV...");
-            for (String line : data) {
-                System.out.println(line + ",");
-            }
-        }
-    }
-
-    public void saveToFile(String content) {
-        System.out.println("Saving to file: " + content);
-    }
-
-    public void sendByEmail(String content) {
-        System.out.println("Sending email with: " + content);
-    }
-
-    public void validateData(List<String> data) {
-        if (data == null || data.isEmpty()) {
-            throw new RuntimeException("Data is empty");
-        }
+    public void processReport(List<String> data) {
+        validator.validate(data);
+        generator.generate(data);
+        fileSaver.save(FILE);
+        emailSender.send(FILE);
     }
 }
